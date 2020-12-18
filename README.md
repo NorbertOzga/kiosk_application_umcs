@@ -8,7 +8,7 @@ Team Project Computer Science UMCS Fall 2020
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Building](#building)
-* [Documentation](#documentation)
+* [Documentation and References](#documentation-and-references)
 * [Features](#features)
 * [Status](#status)
 * [Inspiration](#inspiration)
@@ -35,9 +35,10 @@ Describe how to install / setup your local environement / add link to demo versi
 ## Building
 Lorem ipsum
 
-## Documentation
-Show examples of usage:
-`put-your-code-here`
+## Documentation and References
+https://informer-umcs.atlassian.net/wiki/spaces/IN2020UMCS/overview
+https://informer-umcs.atlassian.net/jira/software/projects/IN2020UMCS/boards/1
+https://support.atlassian.com/jira-software-cloud/docs/reference-issues-in-your-development-work/
 
 ## Features
 List of features ready and TODOs for future development
