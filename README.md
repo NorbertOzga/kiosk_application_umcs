@@ -7,13 +7,16 @@ Team Project Computer Science UMCS Fall 2020
 * [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
+* [Building](#building)
+* [Documentation and References](#documentation-and-references)
 * [Features](#features)
 * [Status](#status)
 * [Inspiration](#inspiration)
 * [Contact](#contact)
+* [License](#license)
 
 ## General info
-Add more general information about project. What the purpose of the project is? Motivation?
+The aim of the project is to facilitate access to important information related to the UMCS university. Ultimately, the application is to be run on devices inside university departments (e.g. TV sets). It is to improve communication between teachers and students.
 
 ## Screenshots
 ![Example screenshot](./img/screenshot.png)
@@ -29,19 +32,23 @@ Add more general information about project. What the purpose of the project is? 
 ## Setup
 Describe how to install / setup your local environement / add link to demo version.
 
-## Code Examples
-Show examples of usage:
-`put-your-code-here`
+## Building
+Lorem ipsum
+
+## Documentation and References
+https://informer-umcs.atlassian.net/wiki/spaces/IN2020UMCS/overview
+https://informer-umcs.atlassian.net/jira/software/projects/IN2020UMCS/boards/1
+https://support.atlassian.com/jira-software-cloud/docs/reference-issues-in-your-development-work/
 
 ## Features
 List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
-
-To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+* displaying current bus schedule
+* displaying rooms currently used for teaching purposes
+* displaying the current weather
+* the possibility of placing important announcements by the dean's office
+* displaying news from the university's website and instagram profile
+* displaying information about canceled lectures or laboratories
+* displaying the timetable
 
 ## Status
 Project is: _in progress_
@@ -54,4 +61,7 @@ Add here credits. Project inspired by..., based on...
 * Adrian Trąbka - [@daddyaddy](https://github.com/daddyaddy) (at.adriano.at@gmail.com)
 * Maciej Mirosław - [@nomorecrash(https://github.com/NoMoreCrash)(maciej.miroslaw99@gmail.com)
 * Hubert Okoń - [@h-okon](https://github.com/h-okon) (hubertszymonokon@gmail.com)
+
+## License
+MIT
 
