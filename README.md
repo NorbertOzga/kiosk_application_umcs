@@ -51,7 +51,7 @@ Add here credits. Project inspired by..., based on...
 
 ## Contact
 * Team leader: Norbert Ozga - [@NorbertOzga](https://github.com/NorbertOzga)
-* Frontend: Adrian Trąbka - [@daddyaddy](https://github.com/daddyaddy) (at.adriano.at@gmail.com)
-* Tester / Engineer: Maciej Mirosław - (maciej.miroslaw99@gmail.com)
-* DevOps: Hubert Okoń - [@h-okon](https://github.com/h-okon) (hubertszymonokon@gmail.com)
+* Adrian Trąbka - [@daddyaddy](https://github.com/daddyaddy) (at.adriano.at@gmail.com)
+* Maciej Mirosław - [@nomorecrash(https://github.com/NoMoreCrash)(maciej.miroslaw99@gmail.com)
+* Hubert Okoń - [@h-okon](https://github.com/h-okon) (hubertszymonokon@gmail.com)
 
