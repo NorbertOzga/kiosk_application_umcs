@@ -1,12 +1,30 @@
 version: "3.4"
 services:
   dev:
-    build: .
-    ports:
-      - "5000:5000"
-    environment:
-      - FLASK_APP=run.py
-      - FLASK_DEBUG=1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
     volumes:
-      - .:/app
-    command: flask run --host=0.0.0.0
+      - migrations_dev_data:/app/migrations
+    command: python -m flask run -h 0.0.0.0 -p ${FLASK_PORT}
+    depends_on:
+      - postgres_dev
+    expose:
+      - ${FLASK_PORT}
+    ports:
+      - ${FLASK_PORT}:${FLASK_PORT}
+
+  postgres_dev:
+    image: postgres:12.5
+    env_file:
+      - config/postgres_dev.env
+    volumes:
+      - postgres_dev_data:/var/lib/postgres/data/
+    expose:
+      - ${POSTGRES_PORT}
+
+volumes:
+  postgres_dev_data:
+  migrations_dev_data:
