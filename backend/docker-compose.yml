@@ -25,6 +25,14 @@ services:
     expose:
       - ${POSTGRES_PORT}
 
+  redis_dev:
+    image: redis
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - REDIS_DISABLE_COMMANDS=FLUSHDB, FLUSHALL
+    ports:
+      - '5555:5555'
+
 volumes:
   postgres_dev_data:
   migrations_dev_data:
