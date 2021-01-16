@@ -1,6 +1,4 @@
-# KioskApplicationUMCS
-Kiosk application based on QT and Flask.
-Team Project Computer Science UMCS Fall 2020
+# Team Project Computer Science UMCS Fall 2020
 
 ## Table of contents
 * [General info](#general-info)
@@ -13,13 +11,12 @@ Team Project Computer Science UMCS Fall 2020
 * [Contact](#contact)
 
 ## General info
-Add more general information about project. What the purpose of the project is? Motivation?
-
-## Screenshots
-![Example screenshot](./img/screenshot.png)
+ The project main goal is to provide reliable and creditable source of information on UMCS campus - especially in the faculty of
+ Mathematics Physics and Computer Science. The goal will be achived by placing multiple large TV screens in the vicinity
+ of the facility. Not only it will provide current news from our university but also other data such as weather and timetables.
 
 ## Technologies
-* Python 3.3
+* Python 3.8
 * C++
 * Docker
 * QML
@@ -27,27 +24,17 @@ Add more general information about project. What the purpose of the project is? 
 * QT
 
 ## Setup
-Describe how to install / setup your local environement / add link to demo version.
-
-## Code Examples
-Show examples of usage:
-`put-your-code-here`
+  To run the app simply run `docker-compose up`
 
 ## Features
-List of features ready and TODOs for future development
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
-
-To-do list:
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+Main features of our product includes but are not limited to:
+* Weather information
+* Tiemtable
+* News from website
 
 ## Status
 Project is: _in progress_
 
-## Inspiration
-Add here credits. Project inspired by..., based on...
 
 ## Contact
 * Team leader: Norbert Ozga - [@NorbertOzga](https://github.com/NorbertOzga)
