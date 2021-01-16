@@ -1,0 +1,435 @@
+{
+	"info": {
+		"_postman_id": "9604ab4a-67ae-4b8d-9b7a-c3322e6f6042",
+		"name": "API INFORMER UMCS 2020",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/api/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "/api/instagram/",
+					"path": [
+						"api",
+						"instagram",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/api/instagram/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "/api/instagram/",
+					"path": [
+						"api",
+						"instagram",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/api/news/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "/api/news/",
+					"path": [
+						"api",
+						"news",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/api/classroom/<int: classroom_nr>",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "classroom_nr",
+						"value": "1",
+						"description": "Request returning next two event for given classroom\n",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "/api/classroom/?classroom_nr=1",
+					"path": [
+						"api",
+						"classroom",
+						""
+					],
+					"query": [
+						{
+							"key": "classroom_nr",
+							"value": "1",
+							"description": "Request returning next two event for given classroom\n"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/api/classroom/<int: classroom_nr>",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "classroom_nr",
+						"value": "1",
+						"description": "Request returning next two event for given classroom\n",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "/api/classroom/?classroom_nr=\"String\"",
+					"path": [
+						"api",
+						"classroom",
+						""
+					],
+					"query": [
+						{
+							"key": "classroom_nr",
+							"value": "\"String\"",
+							"description": "Request returning next two event for given classroom\n"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/api/events/",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "classroom_nr",
+						"value": "1",
+						"description": "Request returning next two event for given classroom\n",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "/api/events",
+					"path": [
+						"api",
+						"events"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Default",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}/api/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "/api/weather?hourly=True",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "/api/weather?hourly=True",
+					"path": [
+						"api",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "hourly",
+							"value": "True",
+							"description": "Returns weather for all day"
+						}
+					]
+				},
+				"description": "When True our weather wil be displayed for next hours instead of just actual hour."
+			},
+			"response": []
+		},
+		{
+			"name": "/api/weather?hourly=False",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "/api/weather?hourly=False",
+					"path": [
+						"api",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "hourly",
+							"value": "False",
+							"description": "Bad value "
+						}
+					]
+				},
+				"description": "Returns weather for given hour (runtime hour)"
+			},
+			"response": []
+		},
+		{
+			"name": "/api/weather?hourly=10",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "/api/weather?hourly=10",
+					"path": [
+						"api",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "hourly",
+							"value": "10",
+							"description": "Bad value "
+						}
+					]
+				},
+				"description": "Returns weather for given hour (runtime hour)"
+			},
+			"response": []
+		},
+		{
+			"name": "/api/weather?hourly=\"Tekst\"",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "/api/weather?hourly=\"Tekst\"",
+					"path": [
+						"api",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "hourly",
+							"value": "\"Tekst\"",
+							"description": "Bad value "
+						}
+					]
+				},
+				"description": "Bad value "
+			},
+			"response": []
+		}
+	]
+}
