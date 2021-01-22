@@ -2,12 +2,10 @@
 
 ## Table of contents
 * [General info](#general-info)
-* [Screenshots](#screenshots)
 * [Technologies](#technologies)
 * [Setup](#setup)
 * [Features](#features)
 * [Status](#status)
-* [Inspiration](#inspiration)
 * [Contact](#contact)
 
 ## General info
@@ -38,7 +36,7 @@ Project is: _in progress_
 
 ## Contact
 * Team leader: Norbert Ozga - [@NorbertOzga](https://github.com/NorbertOzga)
-* Adrian Trąbka - [@daddyaddy](https://github.com/daddyaddy) (at.adriano.at@gmail.com)
-* Maciej Mirosław - [@nomorecrash](https://github.com/NoMoreCrash)(maciej.miroslaw99@gmail.com)
-* Hubert Okoń - [@h-okon](https://github.com/h-okon) (hubertszymonokon@gmail.com)
+* Adrian Trąbka - [@daddyaddy](https://github.com/daddyaddy)
+* Maciej Mirosław - [@nomorecrash](https://github.com/NoMoreCrash)
+* Hubert Okoń - [@h-okon](https://github.com/h-okon) 
 
