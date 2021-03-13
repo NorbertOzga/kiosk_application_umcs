@@ -4,7 +4,9 @@ pipeline {
     stage('build') {
       steps {
         dir("backend") {
-          sh 'sudo pip install -r requirements.txt'
+          withEnv(["HOME=${env.WORKSPACE}"]) {
+            sh 'pip install -r requirements.txt'
+          }
         }
       }
     }
