@@ -11,7 +11,10 @@ class Config:
     def __init__(self, env_type=None):
         self.DEBUG = None
         self.ENV = env_type
-
+        if env_type == ConfigType.DEV:
+            self.SCHEDULER_API_ENABLED = True
+        else:
+            self.SCHEDULER_API_ENABLED = False
 
 class ConfigFactory:
     @staticmethod

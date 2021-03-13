@@ -1,7 +1,7 @@
 from flask import Flask
 
 from .settings import ConfigType, ConfigFactory
-from .extensions import cache
+from .extensions import scheduler
 
 
 def create_app(config_type=ConfigType.DEV) -> Flask:
@@ -10,8 +10,16 @@ def create_app(config_type=ConfigType.DEV) -> Flask:
     config_obj = ConfigFactory.create(config_type)
     app.config.from_object(config_obj)
 
+    register_blueprints(app)
+    register_extensions(app)
+
     return app
 
 
+def register_blueprints(app: Flask) -> None:
+    pass
+
+
 def register_extensions(app: Flask) -> None:
-    cache.init_app(app)
+    scheduler.init_app(app)
+    scheduler.start()
