@@ -3,12 +3,6 @@ import json
 import requests
 from instaloader import Instaloader, Profile
 
-# TO DO:
-# 1. Add async job schedule in app.py // modify it
-# 2. Add security in case when the data hasn't been succesfully donwloaded
-# 3. Randomize photo selection
-# 4. Check what happends with videos
-
 class InstaScraper:
 	def __init__(self):
 		self.gotInitData = False
@@ -61,6 +55,7 @@ class InstaScraper:
 			},
 			'payload': self.posts
 		}
+		# TODO: cache request to redis
 		return request
 
 if __name__ == "__main__":
