@@ -14,7 +14,7 @@ pipeline {
       steps {
         dir("backend") {
            withEnv(["HOME=${env.WORKSPACE}"]) {
-            sh 'python  run.py'
+            sh 'python run.py'
            }
         }
       }   
