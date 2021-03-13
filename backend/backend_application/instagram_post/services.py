@@ -2,7 +2,6 @@ from flask import Response
 import json
 import requests
 from instaloader import Instaloader, Profile
-from helpers import default_json_response
 
 # TO DO:
 # 1. Add async job schedule in app.py // modify it
@@ -13,7 +12,10 @@ from helpers import default_json_response
 class InstaScraper:
 	def __init__(self):
 		self.gotInitData = False
-		self.jsonData = json.dumps(default_json_response)
+		self.jsonData = json.dumps({
+    		'success': False, 
+    		'payload': []
+		})
 		self.loaded = False
 		self.posts = []
 
@@ -63,4 +65,5 @@ class InstaScraper:
 
 if __name__ == "__main__":
 	insta = InstaScraper()
-	data = json.load(insta.getInstagramData())
+	insta.start()
+	print(insta.response())
