@@ -13,7 +13,9 @@ pipeline {
     stage('test') {
       steps {
         dir("backend") {
-          sh 'python run.py'
+           withEnv(["HOME=${env.WORKSPACE}"]) {
+            sh 'python run.py'
+           }
         }
       }   
     }
