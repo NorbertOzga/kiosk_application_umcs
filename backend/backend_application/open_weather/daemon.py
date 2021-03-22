@@ -1,5 +1,7 @@
 import requests
 
+from ..extensions import cache
+
 
 class OpenWeather:
     def __init__(self, location: str = "lublin,pl"):
@@ -10,8 +12,8 @@ class OpenWeather:
             'x-rapidapi-host': "community-open-weather-map.p.rapidapi.com"
         }
 
-    def getCurrent(self):
-        """Returns actual weather."""
+    def cache_current(self):
+        """Returns current weather."""
 
         querystring = {"q": self.location, "lang": "pl"}
         response = requests.request(
@@ -21,9 +23,9 @@ class OpenWeather:
             params=querystring
         )
 
-        return response.text
+        cache.set("current", response.text)
 
-    def getHistory(self):
+    def cache_history(self):
         """Returns weather from last 5 days (1 hour interval)."""
 
         querystring = {"q": self.location, "lang": "pl", "dt": "1590094153"}
@@ -34,10 +36,9 @@ class OpenWeather:
             params=querystring
         )
 
-        return response.text
+        cache.set("history", response.text)
 
-    # Pogoda na następne 5 dni (nowe dane co 3 godziny)
-    def getForecast(self):
+    def cache_forecast(self):
         """Returns weather for next 5 days (3 hours interval)."""
 
         querystring = {"q": self.location, "lang": "pl"}
@@ -48,9 +49,9 @@ class OpenWeather:
             params=querystring
         )
 
-        return response.text
+        cache.set("forecast", response.text)
 
-    def getLongerForecast(self, day_count=16):
+    def cache_long_forecast(self, day_count=16):
         """Returns weather for next 16 days (1 day interval)."""
 
         querystring = {"q": self.location, "lang": "pl", "cnt": day_count}
@@ -61,4 +62,4 @@ class OpenWeather:
             params=querystring
         )
 
-        return response.text
+        cache.set("forecast_long", response.text)
