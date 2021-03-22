@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from . import services as rss
 
 
@@ -11,7 +11,9 @@ blueprint = Blueprint(
 def get_example():
     return {"value": rss.get_value()}
 
+
 @blueprint.route("/post_example", methods=["POST"])
 def post_example():
-    rss.post_example()
-    return ("Success" , 200)
+    json_data = request.json
+    rss.post_example(json_data)
+    return "Success", 200
