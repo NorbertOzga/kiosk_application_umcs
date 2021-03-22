@@ -1,5 +1,6 @@
 from flask import Flask
 
+from .redis_skeleton.views import blueprint as rsbp
 from .settings import ConfigType, ConfigFactory
 from .extensions import scheduler
 
@@ -17,7 +18,7 @@ def create_app(config_type=ConfigType.DEV) -> Flask:
 
 
 def register_blueprints(app: Flask) -> None:
-    pass
+    app.register_blueprint(rsbp)
 
 
 def register_extensions(app: Flask) -> None:
