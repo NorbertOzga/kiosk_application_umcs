@@ -4,7 +4,7 @@ import requests
 class OpenWeather:
     def __init__(self, location: str = "lublin,pl"):
         self.api_url = "https://community-open-weather-map.p.rapidapi.com"
-        self.q = "lublin"
+        self.location = "lublin"
         self.headers = {
             'x-rapidapi-key': "12d9bbbae2msh153e3f9e78cdb3ep1854b9jsn1fb1ff8e3ab2",
             'x-rapidapi-host': "community-open-weather-map.p.rapidapi.com"
@@ -19,7 +19,7 @@ class OpenWeather:
 
     # Historia pogody na poprzednie 5 dni (nowe dane co 1 godzinę)
     def getHistory(self):
-        querystring = {"q":self.location, "dt":"1590094153 "}
+        querystring = {"q":self.location, "lang": "pl", "dt":"1590094153"}
         response = requests.request("GET", self.api_url + "/onecall/timemachine", headers=self.headers, params=querystring)
         return response.text
 
