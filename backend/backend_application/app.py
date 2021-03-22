@@ -1,5 +1,6 @@
 from flask import Flask
 
+from .open_weather.views import blueprint as owbp
 from .settings import ConfigType, ConfigFactory
 from .extensions import scheduler
 
@@ -17,7 +18,7 @@ def create_app(config_type=ConfigType.DEV) -> Flask:
 
 
 def register_blueprints(app: Flask) -> None:
-    pass
+    app.register_blueprint(owbp)
 
 
 def register_extensions(app: Flask) -> None:
