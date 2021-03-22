@@ -4,7 +4,7 @@ import requests
 class OpenWeather:
     def __init__(self, location: str = "lublin,pl"):
         self.api_url = "https://community-open-weather-map.p.rapidapi.com"
-        self.location = "lublin"
+        self.location = "lublin,pl"
         self.headers = {
             'x-rapidapi-key': "12d9bbbae2msh153e3f9e78cdb3ep1854b9jsn1fb1ff8e3ab2",
             'x-rapidapi-host': "community-open-weather-map.p.rapidapi.com"
