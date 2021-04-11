@@ -1,6 +1,7 @@
 from flask import Response
 import json
 import requests
+from ..extensions import cache
 from instaloader import Instaloader, Profile
 
 class InstaScraper:
@@ -55,7 +56,8 @@ class InstaScraper:
 			},
 			'payload': self.posts
 		}
-		# TODO: cache request to redis
+
+		cache.set("instagram_posts", str(request))
 		return request
 
 if __name__ == "__main__":

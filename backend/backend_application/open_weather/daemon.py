@@ -1,6 +1,6 @@
 import requests
 
-from ..extensions import cache
+from backend_application.extensions import cache
 
 
 class OpenWeather:
