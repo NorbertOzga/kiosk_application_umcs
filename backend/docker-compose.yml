@@ -4,26 +4,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      target: dev_server
     env_file:
       - .env
-    volumes:
-      - migrations_dev_data:/app/migrations
     command: python -m flask run -h 0.0.0.0 -p ${FLASK_PORT}
     depends_on:
-      - postgres_dev
+      - redis_dev
     expose:
       - ${FLASK_PORT}
     ports:
       - ${FLASK_PORT}:${FLASK_PORT}
-
-  postgres_dev:
-    image: postgres:12.5
-    env_file:
-      - config/postgres_dev.env
-    volumes:
-      - postgres_dev_data:/var/lib/postgres/data/
-    expose:
-      - ${POSTGRES_PORT}
 
   redis_dev:
     image: redis
@@ -33,6 +23,9 @@ services:
     ports:
       - '5555:5555'
 
-volumes:
-  postgres_dev_data:
-  migrations_dev_data:
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: test
+    command: tests/tests_runner.sh
