@@ -16,3 +16,4 @@ wrapt==1.12.1
 requests
 redis
 Flask-APScheduler
+bs4

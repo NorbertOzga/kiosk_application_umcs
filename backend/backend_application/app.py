@@ -2,6 +2,7 @@ from flask import Flask
 
 from .open_weather.views import blueprint as owbp
 from .instagram_post.views import blueprint as ipbp
+from .events.views import blueprint as esbp
 from .settings import ConfigType, ConfigFactory
 from .extensions import scheduler
 from . import tasks
@@ -20,6 +21,7 @@ def create_app(config_type=ConfigType.DEV) -> Flask:
 def register_blueprints(app: Flask) -> None:
     app.register_blueprint(owbp)
     app.register_blueprint(ipbp)
+    app.register_blueprint(esbp)
 
 
 def register_extensions(app: Flask) -> None:

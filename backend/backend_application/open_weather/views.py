@@ -12,3 +12,13 @@ def get_current():
     # open_weather.cache_current()
 
     return cache.get("current").decode()
+
+
+@blueprint.route("/get-forecast", methods=["GET"])
+def get_forecast():
+    return cache.get("forecast").decode()
+
+@blueprint.route("/get-long-forecast", methods=["GET"])
+def get_long_forecast():
+    return cache.get("forecast_long").decode()
+
