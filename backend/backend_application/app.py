@@ -1,3 +1,5 @@
+import logging
+
 from flask import Flask
 
 from .open_weather.views import blueprint as owbp
@@ -15,6 +17,11 @@ def create_app(config_type=ConfigType.DEV) -> Flask:
 
     register_blueprints(app)
     register_extensions(app)
+
+    logging.basicConfig(
+        filename='/app/backend_application/logfile.log'
+    )
+
     return app
 
 
