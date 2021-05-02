@@ -1,66 +1,60 @@
-from flask import Response
 import json
-import requests
-from ..extensions import cache
+
+from flask import Response
 from instaloader import Instaloader, Profile
 
+from ..extensions import cache
+
+
 class InstaScraper:
-	def __init__(self):
-		self.gotInitData = False
-		self.jsonData = json.dumps({
-    		'success': False, 
-    		'payload': []
-		})
-		self.loaded = False
-		self.posts = []
+    def __init__(self):
+        self.gotInitData = False
+        self.jsonData = json.dumps(
+            {
+                'success': False,
+                'payload': []
+            }
+        )
+        self.loaded = False
+        self.posts = []
 
-	def response(self):
-		if self.gotInitData:
-			return Response(
-				response=self.jsonData,
-				status=200,
-				mimetype='application/json'
-			)
-		else:
-			return Response(
-				response=self.jsonData,
-				status=400,
-				mimetype='application/json'
-			)
+    def response(self):
+        if self.gotInitData:
+            return Response(
+                response=self.jsonData,
+                status=200,
+                mimetype='application/json'
+            )
+        else:
+            return Response(
+                response=self.jsonData,
+                status=400,
+                mimetype='application/json'
+            )
 
-	def start(self):
-		data = self.getInstagramData()
-		self.gotInitData = True
-		self.jsonData = json.dumps(data)
+    def get_instagram_data(self):
+        self.posts.clear()
+        if not self.loaded:
+            insta_loader = Instaloader()
+            profile_name = 'umcs_lublin'
+            profile = Profile.from_username(insta_loader.context, profile_name)
 
-	def getInstagramData(self):
-		self.posts.clear()
-		if not self.loaded:
-			instaLoader = Instaloader()
-			PROFILENAME = 'umcs_lublin'
-			profile = Profile.from_username(instaLoader.context, PROFILENAME)
-		iter = 0
-		for post in profile.get_posts():
-			iter += 1
-			self.posts.append({
-				'photo_url': post.url,
-				'caption': post.caption,
-				'likes': post.likes
-	        })
-			if iter == 5:
-				break
-		request = {
-			'success': True,
-			'info': {
-				'followers': profile.followers
-			},
-			'payload': self.posts
-		}
+        for i, post in enumerate(profile.get_posts()):
+            self.posts.append(
+                {
+                    'photo_url': post.url,
+                    'caption': post.caption,
+                    'likes': post.likes
+                }
+            )
+            if i == 5:
+                break
 
-		cache.set("instagram_posts", str(request))
-		return request
+        data = {
+            'info': {
+                'followers': profile.followers
+            },
+            'payload': self.posts
+        }
 
-if __name__ == "__main__":
-	insta = InstaScraper()
-	insta.start()
-	print(insta.response())
+        cache.set("instagram_posts", str(data))
