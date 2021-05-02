@@ -5,7 +5,7 @@ from .instagram_post.views import blueprint as ipbp
 from .events.views import blueprint as esbp
 from .settings import ConfigType, ConfigFactory
 from .extensions import scheduler
-from . import tasks
+
 
 def create_app(config_type=ConfigType.DEV) -> Flask:
     app = Flask(__name__)

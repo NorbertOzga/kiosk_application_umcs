@@ -1,8 +1,5 @@
 from bs4 import BeautifulSoup
-import requests
 import json
-import datetime
-import time 
 from flask import Response
 from requests import get
 from ..extensions import cache
@@ -83,7 +80,7 @@ class Events:
                     'date': date,
                     'type': event_type,
                     'color': color,
-                    'raw':raw,
+                    'raw': raw,
                     'fixed': fixed
                 })
 
