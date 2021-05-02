@@ -1,4 +1,3 @@
-import io
 import json
 
 from flask import Blueprint
