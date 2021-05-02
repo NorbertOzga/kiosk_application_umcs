@@ -16,6 +16,7 @@ class Config:
         else:
             self.SCHEDULER_API_ENABLED = False
 
+
 class ConfigFactory:
     @staticmethod
     def create(config: ConfigType):
