@@ -26,5 +26,6 @@ def register_blueprints(app: Flask) -> None:
 
 def register_extensions(app: Flask) -> None:
     scheduler.init_app(app)
+
     scheduler.start()
 
