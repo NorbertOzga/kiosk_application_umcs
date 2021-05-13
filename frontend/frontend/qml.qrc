@@ -1,5 +1,18 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>Roboto.ttf</file>
+        <file>sample_umcs_image.jpeg</file>
+        <file>pfpic.png</file>
+        <file>LeftPanel.qml</file>
+        <file>WeatherOption.qml</file>
+        <file>Weather.qml</file>
+        <file>RightTopPanel.qml</file>
+        <file>RightPanel.qml</file>
+        <file>RightBottomPanel.qml</file>
+        <file>News.qml</file>
+        <file>Gradient.qml</file>
+        <file>BusScheduler.qml</file>
+        <file>BusOption.qml</file>
     </qresource>
 </RCC>
