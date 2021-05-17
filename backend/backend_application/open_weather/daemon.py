@@ -1,3 +1,5 @@
+import logging
+import json
 import requests
 
 from backend_application.extensions import cache
@@ -23,7 +25,7 @@ class OpenWeather:
             params=querystring
         )
 
-        cache.set("current", response.text)
+        cache.set("current", json.dumps(response.json()))
 
     def cache_history(self):
         """Returns weather from last 5 days (1 hour interval)."""
@@ -35,8 +37,7 @@ class OpenWeather:
             headers=self.headers,
             params=querystring
         )
-
-        cache.set("history", response.text)
+        cache.set("history", json.dumps(response.json()))
 
     def cache_forecast(self):
         """Returns weather for next 5 days (3 hours interval)."""
@@ -49,7 +50,7 @@ class OpenWeather:
             params=querystring
         )
 
-        cache.set("forecast", response.text)
+        cache.set("forecast", json.dumps(response.json()))
 
     def cache_long_forecast(self, day_count=16):
         """Returns weather for next 16 days (1 day interval)."""
@@ -62,4 +63,4 @@ class OpenWeather:
             params=querystring
         )
 
-        cache.set("forecast_long", response.text)
+        cache.set("forecast_long", json.dumps(response.json()))
