@@ -19,7 +19,7 @@ def check_cache_events(func):
             - datetime.datetime.strptime(
                 last_events_fetch.decode(), "%Y-%m-%d %H:%M:%S"
             )
-            > datetime.timedelta(hours=2)
+            > datetime.timedelta(seconds=2)
         ):
             events = services.Events()
             events.get_events()

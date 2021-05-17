@@ -34,9 +34,14 @@ class Events:
         response = get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
         everything = soup.find('div', class_='paginate-content')
-        everything_fixed = everything.text.replace('\n', '').strip()
+        intro_text = everything.find('p')
+        intro_text = intro_text.text.replace('\n', '').strip()
 
-        return everything_fixed
+        if intro_text == "":
+            intro_text = everything.find('div', class_='jRelatedPhotos').find('p')
+            intro_text = intro_text.text.replace('\n', '').strip()
+
+        return intro_text
 
     def get_events(self):
         url = 'http://www.umcs.pl'
@@ -80,12 +85,12 @@ class Events:
                     'date': date,
                     'type': event_type,
                     'color': color,
-                    'raw': raw,
-                    'fixed': fixed
+                    # 'raw': raw,
+                    'text': fixed
                 })
 
         data = {
-            'payload': json.dumps(item_list)
+            'payload': item_list
         }
 
         cache.set("events", str(data))
