@@ -62,6 +62,8 @@ class Events:
             event_type = item.find('em', class_='label-area-A')
             event_type = event_type.text.replace('\n', '').strip()
 
+            photo_link = item.find('img', class_='img')['src']
+
             color = get_color(event_type)
 
             sub_url = item['href']
@@ -85,7 +87,7 @@ class Events:
                     'date': date,
                     'type': event_type,
                     'color': color,
-                    # 'raw': raw,
+                    'photo_link': photo_link,
                     'text': fixed
                 })
 
