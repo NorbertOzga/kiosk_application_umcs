@@ -214,7 +214,7 @@ Rectangle{
         repeat: true
         triggeredOnStart: true
         onTriggered: {
-            update()
+            downloadData()
         }
     }
 
@@ -229,14 +229,12 @@ Rectangle{
         }
     }
 
-    function update()
+    function downloadData()
     {
-        var jsonData;
         request('http://localhost:5001/instagram_post/get_post', function (o) {
             jsonData = JSON.parse(o.responseText);
             instagramSection.jsonData = jsonData;
         });
-        return jsonData;
     }
 
     function updateView() {
@@ -259,20 +257,6 @@ Rectangle{
             xhr.open('GET', url, true);
             xhr.send('');
         }
-    Timer {
-        id: timer
-        function setTimeout(cb, delayTime) {
-            timer.interval = delayTime;
-            timer.repeat = true;
-            timer.triggered.connect(cb);
-            timer.triggered.connect(function release () {
-                timer.triggered.disconnect(cb); // This is important
-                timer.triggered.disconnect(release); // This is important as well
-            });
-            timer.start();
-        }
-    }
-
 }
 
 /*##^##
