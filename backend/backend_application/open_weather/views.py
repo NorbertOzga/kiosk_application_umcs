@@ -7,7 +7,7 @@ from ..extensions import cache
 
 import json
 
-blueprint = Blueprint("open_weather", __name__, url_prefix="/open-weather")
+blueprint = Blueprint("open_weather", __name__, url_prefix="/open_weather")
 
 
 def check_cache_current(func):
@@ -76,21 +76,21 @@ def check_cache_long_forecast(func):
     return wrapper_long_forecast
 
 
-@blueprint.route("/get-current", methods=["GET"])
+@blueprint.route("/get_current", methods=["GET"])
 @check_cache_current
 def get_current():
     data = cache.get("current")
     return json.dumps(data.decode()).replace('\\"', '"')[1:-1]
 
 
-@blueprint.route("/get-forecast", methods=["GET"])
+@blueprint.route("/get_forecast", methods=["GET"])
 @check_cache_forecast
 def get_forecast():
     data = cache.get("forecast")
     return json.dumps(data.decode()).replace("'", '"')[1:-1]
 
 
-@blueprint.route("/get-long-forecast", methods=["GET"])
+@blueprint.route("/get_long_forecast", methods=["GET"])
 @check_cache_long_forecast
 def get_long_forecast():
     data = cache.get("forecast_long")
