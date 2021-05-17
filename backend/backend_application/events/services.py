@@ -42,16 +42,16 @@ class Events:
         url = 'http://www.umcs.pl'
         response = get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
-        all_events = soup.find_all('a', class_='box-event-small')
+        all_events = soup.find_all('a', class_='box-news')
 
         fail_flag = False
         item_list = []
 
         for item in all_events:
-            event_name = item.find('div', class_='col-xs-7')
+            event_name = item.find('h4', class_='title')
             event_name = event_name.text.replace('\n', '').strip()
                     
-            date = item.find('em', class_='label-meta')
+            date = item.find('div', class_='label-meta')
             date = date.text.replace('\n', '').strip()
             
             event_type = item.find('em', class_='label-area-A')
