@@ -18,7 +18,7 @@ def check_cache_current(func):
                 or datetime.datetime.now()
                 - datetime.datetime.strptime(
             last_weather_current.decode(), "%Y-%m-%d %H:%M:%S"
-        ) > datetime.timedelta(seconds=5)  # time to adjust
+        ) > datetime.timedelta(minutes=45)  # time to adjust
         ):
             open_weather = daemon.OpenWeather()
             open_weather.cache_current()
