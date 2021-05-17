@@ -14,9 +14,10 @@ Window {
     }
 
     LeftPanel   {
-
+        id: leftPanelRoot
     }
     RightPanel {
+        id: rightPanelRoot
         x: 960
         y: 0
 
