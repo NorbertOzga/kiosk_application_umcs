@@ -12,7 +12,10 @@ Rectangle{
     height: 1080
     visible: true
     color: "#303030"
+    property var jsonData: null
+    property int state: 0
 
+    property string imgUrl : "https://i.stack.imgur.com/mwFzF.png"
     Rectangle {
         id: rectanglebig
         x: 0
@@ -81,7 +84,7 @@ Rectangle{
             opacity: 1
             smooth: false
             anchors.fill: parent
-            source: "sample_umcs_image.jpeg"
+            source: instagramSection.imgUrl
             fillMode: Image.Pad
             anchors.rightMargin: 0
             anchors.bottomMargin: 0
@@ -120,8 +123,7 @@ Rectangle{
         width: 118
         height: 26
         color: "#c3c3c3"
-        text: qsTr("umcs_lublin
-")
+        text: qsTr("umcs_lublin")
         font.pixelSize: 21
         font.family: "Roboto"
     }
@@ -145,8 +147,8 @@ Rectangle{
         width: 810
         height: 228
         color: "#c3c3c3"
-        text: "UMCS przez różowe \"okulary\" 😍❤️\n💌 Dużo miłości z okazji Walentynek! 💌\n.\n.\n.\n#umcs #umcsLublin #university #uniwersytet #uni #uniinpoland #universityinlublin #architecture #study #student #studentslife #ilovelublin #Lubelskie #lbn #valentines #valentinesday #люблін #люблин"
-        font.pixelSize: 18
+        text: qsTr("Not yet downloaded.")
+        font.pixelSize: 12
         wrapMode: Text.WordWrap
         textFormat: Text.PlainText
         font.family: "Verdana"
@@ -182,30 +184,94 @@ Rectangle{
     }
 
     Text {
-        id: text1
+        id: likes
         x: 438
         y: 988
         width: 86
         height: 48
         color: "#c3c3c3"
-        text: qsTr("512")
+        text: qsTr("Not yet downloaded")
         font.pixelSize: 42
         font.bold: true
         font.family: "Roboto"
     }
 
     Text {
-        id: text3
+        id: followerCount
         x: 697
         y: 721
         width: 183
         height: 25
         color: "#c3c3c3"
-        text: qsTr("14,2 tyś obserwujących")
+        text: qsTr("Not yet downloaded.")
         font.pixelSize: 17
         font.family: "Roboto"
     }
+    Timer {
+        id: mainTimer
+        interval: 50000
+        running: true
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: {
+            update()
+        }
+    }
 
+    Timer {
+        id: cycleViewTimer
+        interval: 5000
+        running: true
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: {
+            updateView()
+        }
+    }
+
+    function update()
+    {
+        var jsonData;
+        request('http://localhost:5001/instagram_post/get_post', function (o) {
+            jsonData = JSON.parse(o.responseText);
+            instagramSection.jsonData = jsonData;
+        });
+        return jsonData;
+    }
+
+    function updateView() {
+        console.log(instagramSection.jsonData);
+        followerCount.text = jsonData.info.followers + " obserwujących."
+        postDescription.text = jsonData.payload[instagramSection.state].caption
+        postImage.source = jsonData.payload[instagramSection.state].photo_url
+        likes.text = jsonData.payload[instagramSection.state].likes;
+        instagramSection.state+=1;
+        instagramSection.state%=6;
+    }
+
+    function request(url, callback) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = (function(myxhr) {
+                return function() {
+                    if(myxhr.readyState === 4) callback(myxhr)
+                }
+            })(xhr);
+            xhr.open('GET', url, true);
+            xhr.send('');
+        }
+    Timer {
+        id: timer
+        function setTimeout(cb, delayTime) {
+            timer.interval = delayTime;
+            timer.repeat = true;
+            timer.triggered.connect(cb);
+            timer.triggered.connect(function release () {
+                timer.triggered.disconnect(cb); // This is important
+                timer.triggered.disconnect(release); // This is important as well
+            });
+            timer.start();
+        }
+    }
 
 }
 

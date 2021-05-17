@@ -10,9 +10,6 @@ int main(int argc, char *argv[])
     QQmlComponent component(&engine, QUrl::fromLocalFile("main.qml"));
     QObject *object = component.create();
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-
-    DataController* dataController = new DataController(engine.rootObjects()[0]);
-
     delete object;
     return app.exec();
 }

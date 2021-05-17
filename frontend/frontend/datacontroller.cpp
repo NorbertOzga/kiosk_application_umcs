@@ -12,8 +12,15 @@ DataController::DataController(QObject* obj)
 {
     // Set root
     this->root = obj;
-
-    // Set left panel root
-    this->left = this->root->findChild<QObject*>("Left Panel");
-    qDebug() << this->left->objectName();
+    if(this->root)
+    {
+        qDebug() << "OK";
+    }
+    else
+    {
+        qDebug() << "NOT OK";
+    }
+//    // Set left panel root
+//    this->left = this->root->findChild<QObject*>("Left Panel");
+//    qDebug() << this->left->objectName();
 }

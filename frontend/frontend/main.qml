@@ -3,6 +3,7 @@ import QtQuick.Window 2.12
 import QtGraphicalEffects 1.15
 
 Window {
+    id: root
     width: 1920
     height: 1080
     visible: true
@@ -22,7 +23,6 @@ Window {
         y: 0
 
     }
-
 }
 
 /*##^##
