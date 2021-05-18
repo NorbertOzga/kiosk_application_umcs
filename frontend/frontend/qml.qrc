@@ -14,5 +14,6 @@
         <file>Gradient.qml</file>
         <file>BusScheduler.qml</file>
         <file>BusOption.qml</file>
+        <file>Balls.qml</file>
     </qresource>
 </RCC>
