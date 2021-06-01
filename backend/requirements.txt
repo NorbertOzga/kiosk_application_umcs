@@ -17,3 +17,6 @@ requests
 redis
 Flask-APScheduler
 bs4
+selenium
+phantomjs
+xmltodict

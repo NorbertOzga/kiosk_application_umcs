@@ -10,10 +10,13 @@ services:
     command: python -m flask run -h 0.0.0.0 -p ${FLASK_PORT}
     depends_on:
       - redis_dev
+      - phantomjs
     expose:
       - ${FLASK_PORT}
     ports:
       - ${FLASK_PORT}:${FLASK_PORT}
+    networks:
+      - app_network
 
   redis_dev:
     image: redis
@@ -22,10 +25,22 @@ services:
       - REDIS_DISABLE_COMMANDS=FLUSHDB, FLUSHALL
     ports:
       - '5555:5555'
+    networks:
+      - app_network
 
+  phantomjs:
+    container_name: phantomjs
+    image: shufo/phantomjs
+    command: --webdriver 8901
+    networks:
+      - app_network
   test:
     build:
       context: .
       dockerfile: Dockerfile
       target: test
     command: tests/tests_runner.sh
+
+networks:
+  app_network:
+    driver: bridge
