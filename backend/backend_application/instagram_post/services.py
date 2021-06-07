@@ -1,4 +1,5 @@
 import json
+import base64
 
 from flask import Response
 from instaloader import Instaloader, Profile
@@ -40,10 +41,12 @@ class InstaScraper:
             profile = Profile.from_username(insta_loader.context, profile_name)
 
         for i, post in enumerate(profile.get_posts()):
+            temp = post.caption.encode("utf-8")
+            temp2 = base64.b64encode(temp)
             self.posts.append(
                 {
                     'photo_url': post.url,
-                    'caption': post.caption,
+                    'caption': temp2.decode("utf-8"),
                     'likes': post.likes
                 }
             )

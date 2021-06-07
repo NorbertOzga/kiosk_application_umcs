@@ -37,4 +37,5 @@ def check_cache_buses(func):
 def get_bus(bus_stop_id):
     cache_name = f"bus_stop_{bus_stop_id}"
     data = cache.get(cache_name)
-    return json.dumps(data.decode())
+    print(data)
+    return json.dumps(data.decode()).replace("'", '"')[1:-1]
