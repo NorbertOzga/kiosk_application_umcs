@@ -3,11 +3,11 @@ import json
 from flask import Response
 from instaloader import Instaloader, Profile
 
-from ..extensions import cache
+from backend_application.extensions import cache
 
 
 class InstaScraper:
-    def __init__(self):
+    def __init__(self, cache_module: cache):
         self.gotInitData = False
         self.jsonData = json.dumps(
             {
@@ -17,6 +17,7 @@ class InstaScraper:
         )
         self.loaded = False
         self.posts = []
+        self.cache_module = cache_module
 
     def response(self):
         if self.gotInitData:
@@ -57,4 +58,4 @@ class InstaScraper:
             'payload': self.posts
         }
 
-        cache.set("instagram_posts", str(data))
+        self.cache_module.set("instagram_posts", str(data))

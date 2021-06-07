@@ -23,6 +23,9 @@ def get_color(string):
 
 
 class Events:
+    def __init__(self, cache_module = cache):
+        self.cache_module = cache_module
+
     def subscrape(self, url):
         response = get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -95,4 +98,4 @@ class Events:
             'payload': item_list
         }
 
-        cache.set("events", str(data))
+        self.cache_module.set("events", str(data))
