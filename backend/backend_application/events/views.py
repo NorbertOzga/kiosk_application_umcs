@@ -21,7 +21,7 @@ def check_cache_events(func):
             )
             > datetime.timedelta(hours=2)
         ):
-            events = services.Events()
+            events = services.Events(cache_module=cache)
             events.get_events()
             cache.set(
                 "last_events_fetch",

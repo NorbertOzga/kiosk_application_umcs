@@ -30,8 +30,6 @@ WORKDIR /app
 # TESTS
 FROM test_deps AS test
 
-RUN apt-get update && apt-get install -y --no-install-recommends redis
-
 COPY . /app
 WORKDIR /app
 

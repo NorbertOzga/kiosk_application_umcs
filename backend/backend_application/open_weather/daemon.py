@@ -6,10 +6,11 @@ from backend_application.extensions import cache
 
 
 class OpenWeather:
-    def __init__(self, location: str = "lublin,pl"):
+    def __init__(self, cache_module: cache):
         self.api_url = "https://api.openweathermap.org/data/2.5"
         self.location = "Lublin,pl"
         self.api_key = os.environ["OPENWEATHER_API_KEY"]  # noqa
+        self.cache_module = cache_module
 
     def cache_current(self):
         """Returns current weather."""
@@ -19,7 +20,7 @@ class OpenWeather:
             f"{self.api_url}/weather?q={self.location}&appid={self.api_key}"
         )
 
-        cache.set("current", json.dumps(response.json()))
+        self.cache_module.set("current", json.dumps(response.json()))
 
     def cache_forecast(self):
         """Returns weather for next 5 days (3 hours interval)."""
@@ -28,7 +29,7 @@ class OpenWeather:
             "GET",
             f"{self.api_url}/forecast?q={self.location}&appid={self.api_key}",
         )
-        cache.set("forecast", json.dumps(response.json()))
+        self.cache_module.set("forecast", json.dumps(response.json()))
 
     def cache_long_forecast(self, day_count=16):
         """Returns weather for next 16 days (1 day interval)."""
@@ -39,4 +40,4 @@ class OpenWeather:
             f"q={self.location}&cnt={day_count}&appid={self.api_key}"
         )
 
-        cache.set("forecast_long", json.dumps(response.json()))
+        self.cache_module.set("forecast_long", json.dumps(response.json()))
