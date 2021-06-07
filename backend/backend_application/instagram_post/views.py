@@ -36,4 +36,4 @@ def check_cache(func):
 @check_cache
 def get_posts():
     data = cache.get("instagram_posts")
-    return json.dumps(data.decode()).replace("'", '"')[1:-1]
+    return json.dumps(data.decode())[1:-1]
