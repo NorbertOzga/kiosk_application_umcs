@@ -20,7 +20,7 @@ def check_cache_current(func):
             last_weather_current.decode(), "%Y-%m-%d %H:%M:%S"
         ) > datetime.timedelta(minutes=45)  # time to adjust
         ):
-            open_weather = daemon.OpenWeather()
+            open_weather = daemon.OpenWeather(cache_module=cache)
             open_weather.cache_current()
             cache.set(
                 "last_weather_current",
@@ -42,7 +42,7 @@ def check_cache_forecast(func):
             last_weather_forecast.decode(), "%Y-%m-%d %H:%M:%S"
         ) > datetime.timedelta(hours=3)  # time to adjust
         ):
-            open_weather = daemon.OpenWeather()
+            open_weather = daemon.OpenWeather(cache_module=cache)
             open_weather.cache_forecast()
             cache.set(
                 "last_weather_forecast",
@@ -64,7 +64,7 @@ def check_cache_long_forecast(func):
             last_weather_long_forecast.decode(), "%Y-%m-%d %H:%M:%S"
         ) > datetime.timedelta(days=1)  # time to adjust
         ):
-            open_weather = daemon.OpenWeather()
+            open_weather = daemon.OpenWeather(cache_module=cache)
             open_weather.cache_long_forecast()
             cache.set(
                 "last_weather_long_forecast",

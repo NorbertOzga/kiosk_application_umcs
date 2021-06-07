@@ -23,7 +23,7 @@ def get_color(string):
 
 
 class Events:
-    def __init__(self, cache_module = cache):
+    def __init__(self, cache_module=cache):
         self.cache_module = cache_module
 
     def subscrape(self, url):

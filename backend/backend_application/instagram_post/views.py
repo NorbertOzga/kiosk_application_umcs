@@ -20,7 +20,7 @@ def check_cache(func):
             )
             > datetime.timedelta(minutes=45)
         ):
-            insta_scraper = services.InstaScraper()
+            insta_scraper = services.InstaScraper(cache_module=cache)
             insta_scraper.get_instagram_data()
             cache.set(
                 "last_instagram_fetch",
