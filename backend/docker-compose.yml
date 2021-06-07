@@ -34,11 +34,14 @@ services:
     command: --webdriver 8901
     networks:
       - app_network
+
   test:
     build:
       context: .
       dockerfile: Dockerfile
       target: test
+    env_file:
+      - .env
     command: tests/tests_runner.sh
 
 networks:
