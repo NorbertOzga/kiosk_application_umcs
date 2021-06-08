@@ -17,7 +17,7 @@ date_handler = lambda obj: (
 )
 
 default_json_response = {
-    'success': False,
+    'success': "False",
     'payload': []
 }
 
@@ -114,7 +114,7 @@ class ZTM:
         if len(self.hash) == 0:
             return json.dumps({'success': False, 'payload': []})
         obj = {
-            'success': True,
+            'success': "True",
             'last_updated': self.last_updated,
             'hash': self.hash,
             'age': self.age,
@@ -128,7 +128,7 @@ class ZTM:
         for id in buses:
             buses_to_add.append(self.getBusStop(id))
         new_json = {
-            'success': True,
+            'success': "True",
             'info': {
             },
             'payload': buses_to_add
@@ -147,11 +147,11 @@ class ZTM:
         # type ? 
         vec_list = []
         for vec in R:
-            is_bus = True if vec['@vt'].find('A') != -1 else False
-            has_air_conditioning = True if vec['@vuw'].find('K') != -1 else False
-            has_ticket_machine = True if vec['@vuw'].find('B') != -1 else False
-            is_low_floor = True if vec['@vuw'].find('N') != -1 else False
-            is_planned = True if vec['S']['@t'].strip().find(' ') != -1 else False
+            is_bus = "True" if vec['@vt'].find('A') != -1 else "False"
+            has_air_conditioning = "True" if vec['@vuw'].find('K') != -1 else "False"
+            has_ticket_machine = "True" if vec['@vuw'].find('B') != -1 else "False"
+            is_low_floor = "True" if vec['@vuw'].find('N') != -1 else "False"
+            is_planned = "True" if vec['S']['@t'].strip().find(' ') != -1 else "False"
             # vec -> N and T ? 
             vec_list.append({
                 'number': vec['@nr'],
@@ -192,7 +192,7 @@ class ZTM:
     def requestDeparture(self, id='757'):
         bus = self.getBusStop(id)
         new_json = {
-            'success': True,
+            'success': "True",
             'info': bus['info'],
             'payload': bus['payload']
         }

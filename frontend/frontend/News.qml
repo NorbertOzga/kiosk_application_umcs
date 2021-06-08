@@ -32,7 +32,7 @@ ColumnLayout {
     }
 
     Timer {
-        interval: 60000
+        interval: 100
         running: true
         repeat: true
         triggeredOnStart: true
@@ -40,8 +40,8 @@ ColumnLayout {
         onTriggered: {
             request(
                 'http://localhost:5001/events/get_events',
-                function (res) {
-                    var responseBody = JSON.parse(res.responseText());
+                function (o) {
+                    var responseBody = JSON.parse(o.responseText);
                     news = responseBody.payload;
                 }
             );
