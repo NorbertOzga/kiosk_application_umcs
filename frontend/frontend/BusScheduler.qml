@@ -23,7 +23,7 @@ Rectangle {
        id: newsSlide
        onTriggered: {
            var date = new Date()
-           currentHour = date.getHours() + 1
+           currentHour = date.getHours()
            currentMinute = date.getMinutes()
            currentSecond = date.getSeconds()
        }
@@ -126,7 +126,7 @@ Rectangle {
     }
     Timer {
         id: mainTimer
-        interval: 50000
+        interval: 6000
         running: true
         repeat: false
         triggeredOnStart: true

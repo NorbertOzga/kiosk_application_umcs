@@ -19,7 +19,7 @@ def check_cache_buses(func):
             - datetime.datetime.strptime(
                 last_buses_fetch.decode(), "%Y-%m-%d %H:%M:%S"
             )
-            > datetime.timedelta(hours=2)
+            > datetime.timedelta(minutes=1)
         ):
             buses = services.ZTM();
             buses.requestDeparture(bus_stop_id)

@@ -49,7 +49,7 @@ Rectangle {
                       "Tornado": {label: "Tornado", icon: "weather-icons/50d@2x.png"},
                       "Clouds": {label: "Pochmurno", icon: "weather-icons/09d@2x.png"},
                     }
-                    var responseBody = JSON.stringify(res.responseText);
+                    var responseBody = JSON.parse(res.responseText);
                     var firstWeather = responseBody.weather[0];
                     var currentWeatherInfo = firstWeather ? weatherInfo[firstWeather.main] : undefined
                     currentTemperature = responseBody.main.temp - 273;

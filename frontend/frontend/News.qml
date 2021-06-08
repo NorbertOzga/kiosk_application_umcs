@@ -32,7 +32,7 @@ ColumnLayout {
     }
 
     Timer {
-        interval: 100
+        interval: 60000
         running: true
         repeat: true
         triggeredOnStart: true
