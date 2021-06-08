@@ -240,7 +240,7 @@ Rectangle{
     function updateView() {
         console.log(instagramSection.jsonData);
         followerCount.text = jsonData.info.followers + " obserwujących."
-        postDescription.text = jsonData.payload[instagramSection.state].caption
+        postDescription.text = Qt.atob(jsonData.payload[instagramSection.state].caption)
         postImage.source = jsonData.payload[instagramSection.state].photo_url
         likes.text = jsonData.payload[instagramSection.state].likes;
         instagramSection.state+=1;
