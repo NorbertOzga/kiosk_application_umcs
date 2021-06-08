@@ -2,69 +2,64 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.3
 
 
-RowLayout {
+ColumnLayout {
     id: weatherOption
+    width: parent.width
+    height: parent.height
+    property alias icon: weatherIcon.source
     property alias temperature: temperatureText.text
     property alias time: timeText.text
     property alias label: labelText.text
+    anchors.horizontalCenter: parent.horizontalCenter
 
     Rectangle {
         id: weatherOptionIcon
-        width: 80
-        height: 80
+        width: 460
+        height: 200
         color: "#303030"
+        anchors.horizontalCenter: parent.horizontalCenter
 
-        FontLoader {
-            id: glyphs
-            source: "fontello"
+        Image {
+            id: weatherIcon
+            width: 150
+            height: 150
+            fillMode: Image.PreserveAspectFit
+            opacity: 1
+            smooth: false
+            anchors.fill: parent
+            anchors.horizontalCenter: parent.horizontalCenter
+            source: weatherIcon
+
         }
 
-        Text {
-            font.family: glyphs.name
-            text: "\e83a"
-        }
     }
 
-    Rectangle {
-        id: borderRight
-        width: 1
-        height: 80
-        color: "#666"
-    }
-
-    Rectangle {
-        id: weatherSpacing
-        width: 5
-        height: 80
-        color: "#303030"
-    }
 
     ColumnLayout {
         id: weatherOptionContent
+        width: parent.width
+        anchors.horizontalCenter: parent.horizontalCenter
+
         Text{
             color: "white"
             id: temperatureText
             text: temperature
-            lineHeightMode: Text.FixedHeight
-            lineHeight: 6
-//            font.weight: 800
-//            font.pixelSize: 32
+            font.pixelSize: 50
+            anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Text{
             color: "white"
             id: timeText
             text: time
-            lineHeightMode: Text.FixedHeight
-            lineHeight: 6
+            anchors.horizontalCenter: parent.horizontalCenter
         }
 
         Text{
             color: "white"
             id: labelText
             text: label
-            lineHeightMode: Text.FixedHeight
-            lineHeight: 6
+            anchors.horizontalCenter: parent.horizontalCenter
         }
     }
 

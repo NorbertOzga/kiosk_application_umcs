@@ -7,6 +7,27 @@ Rectangle {
     width: parent.width / 2
     height: parent.height
     color: "#252525"
+    property var busses811: []
+    property var busses478: []
+    property int currentPage: 0
+    property int maxBusPerPage: 5
+    property int currentHour: 0
+    property int currentMinute: 0
+    property int currentSecond: 0
+
+    Timer {
+       interval: 1000
+       running: true
+       repeat: true
+       triggeredOnStart: true
+       id: newsSlide
+       onTriggered: {
+           var date = new Date()
+           currentHour = date.getHours() + 1
+           currentMinute = date.getMinutes()
+           currentSecond = date.getSeconds()
+       }
+    }
 
     Rectangle {
         id: busSchedulerInner
@@ -16,6 +37,7 @@ Rectangle {
         anchors.centerIn: parent
 
         ColumnLayout {
+            id: busColumnLayout
             width: parent.width
 
             Rectangle {
@@ -54,87 +76,89 @@ Rectangle {
                 width: parent.width
                 height: parent.height - 60
                 color: "#303030"
-
                 ColumnLayout {
+                    id: busOptionLayout
                     width: parent.width
                     height: parent.height
                     spacing: 0
 
-
                     Text {
                         color: "#aaa"
-                        text: "Aktualna godzina: 14:50:26"
+                        text: qsTr(
+                            "Aktualna godzina: " +
+                            (currentHour  < 10 ? "0" : "") + currentHour + ":" +
+                            (currentMinute < 10 ? "0" : "") + currentMinute + ":" +
+                            (currentSecond < 10 ? "0" : "") + currentSecond
+                        )
                         anchors.horizontalCenter: parent.horizontalCenter
-//                        font {
-//                            weight: 800
-//                            pixelSize: 25
-//                          }
-                    }
+                        font.pixelSize: 25
 
-                    BusOption {
-                        number: "31"
-                        label: "Dworzec PKP"
-                        time: "<1min"
                     }
+                    BusOption { id: bus478_1; option: busses478[currentPage * maxBusPerPage + 0] }
+                    BusOption { id: bus478_2; option: busses478[currentPage * maxBusPerPage + 1] }
+                    BusOption { id: bus478_3; option: busses478[currentPage * maxBusPerPage + 2] }
+                    BusOption { id: bus478_4; option: busses478[currentPage * maxBusPerPage + 3] }
+                    BusOption { id: bus478_5; option: busses478[currentPage * maxBusPerPage + 4] }
 
-                    BusOption {
-                        number: "29"
-                        label: "Dworzec PKP"
-                        time: "<1min"
-                    }
+                    Rectangle {width: parent.width; height: 20; color: "#303030"}
 
-                    BusOption {
-                        number: "35"
-                        label: "Dworzec PKP"
-                        time: "<1min"
-                    }
-
-                    BusOption {
-                        number: "35"
-                        label: "Dworzec PKP"
-                        time: "<1min"
-                    }
-
-                    BusOption {
-                        number: "35"
-                        label: "Dworzec PKP"
-                        time: "<1min"
-                    }
-
-                    BusOption {
-                        number: "35"
-                        label: "Dworzec PKP"
-                        time: "<1min"
-                    }
-
-                    BusOption {
-                        number: "35"
-                        label: "Dworzec PKP"
-                        time: "<1min"
-                    }
-
-                    BusOption {
-                        number: "35"
-                        label: "Dworzec PKP"
-                        time: "<1min"
-                    }
-
-                    BusOption {
-                        number: "35"
-                        label: "Dworzec PKP"
-                        time: "<1min"
-                    }
-
-                    BusOption {
-                        number: "35"
-                        label: "Dworzec PKP"
-                        time: "<1min"
-                    }
-
+                    BusOption { id: bus811_1; option: busses811[currentPage * maxBusPerPage + 0] }
+                    BusOption { id: bus811_2; option: busses811[currentPage * maxBusPerPage + 1] }
+                    BusOption { id: bus811_3; option: busses811[currentPage * maxBusPerPage + 2] }
+                    BusOption { id: bus811_4; option: busses811[currentPage * maxBusPerPage + 3] }
+                    BusOption { id: bus811_5; option: busses811[currentPage * maxBusPerPage + 4] }
                 }
 
             }
 
         }
+    }
+
+    Timer {
+        id: cycleThroughViewTimer
+        interval: 5000
+        running: true
+        repeat: true
+        triggeredOnStart: true
+        onTriggered: {
+            updateView()
+        }
+    }
+    Timer {
+        id: mainTimer
+        interval: 50000
+        running: true
+        repeat: false
+        triggeredOnStart: true
+        onTriggered: {
+            downloadData();
+        }
+    }
+    function downloadData() {
+        request('http://localhost:5001/buses/get_buses/811', function (o) {
+            busses811 = JSON.parse(o.responseText).payload || [];
+        });
+        request('http://localhost:5001/buses/get_buses/478', function (o) {
+            busses478 = JSON.parse(o.responseText).payload || [];
+        });
+    }
+
+    function updateView() {
+        if(!busses811.length || !busses478.length) {currentPage = 0; return;}
+        var pagesCount811 = Math.ceil(busses811.length / maxBusPerPage);
+        var pagesCount478 = Math.ceil(busses478.length / maxBusPerPage);
+        var smallesPagesCount = pagesCount478 < pagesCount811 ? pagesCount478 : pagesCount811
+        currentPage = currentPage + 1 < smallesPagesCount ? currentPage + 1 : 0
+    }
+
+    function request(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = (function(myxhr) {
+            return function() {
+                if(myxhr.readyState === 4) callback(myxhr)
+            }
+        })(xhr);
+        xhr.open('GET', url, true);
+        xhr.send('');
     }
 }

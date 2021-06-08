@@ -15,5 +15,14 @@
         <file>BusScheduler.qml</file>
         <file>BusOption.qml</file>
         <file>Balls.qml</file>
+        <file>weather-icons/01d@2x.png</file>
+        <file>weather-icons/02d@2x.png</file>
+        <file>weather-icons/03d@2x.png</file>
+        <file>weather-icons/04d@2x.png</file>
+        <file>weather-icons/09d@2x.png</file>
+        <file>weather-icons/10d@2x.png</file>
+        <file>weather-icons/11d@2x.png</file>
+        <file>weather-icons/13d@2x.png</file>
+        <file>weather-icons/50d@2x.png</file>
     </qresource>
 </RCC>

@@ -7,6 +7,58 @@ Rectangle {
     width: parent.width / 2
     height: parent.height
     color: "#252525"
+    property int currentTemperature: 0
+    property string currentDescription: ""
+    property string currentIcon: ""
+
+    function request(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = (function(myxhr) {
+            return function() {
+                if(myxhr.readyState === 4) callback(myxhr)
+            }
+        })(xhr);
+        xhr.open('GET', url, true);
+        xhr.send('');
+    }
+
+    Timer {
+        interval: 300000
+        running: true
+        repeat: true
+        triggeredOnStart: true
+        id: weatherTimeApi
+        onTriggered: {
+            request(
+                'http://localhost:5001/open_weather/get_current',
+                function (res) {
+                    var weatherInfo = {
+                      "Clear": {label: "Czyste niebo", icon: "weather-icons/01d@2x.png"},
+                      "Thunderstorm": {label: "Burza", icon: "weather-icons/11d@2x.png"},
+                      "Drizzle": {label: "Mżawka", icon: "weather-icons/10d@2x.png"},
+                      "Rain": {label: "Deszcz", icon: "weather-icons/09d@2x.png"},
+                      "Snow": {label: "Śnieg", icon: "weather-icons/13d@2x.png"},
+                      "Mist": {label: "Mgła", icon: "weather-icons/50d@2x.png"},
+                      "Smoke": {label: "Dymnie", icon: "weather-icons/50d@2x.png"},
+                      "Haze": {label: "Mgła", icon: "weather-icons/50d@2x.png"},
+                      "Dust": {label: "Kurz", icon: "weather-icons/50d@2x.png"},
+                      "Fog": {label: "Mgła", icon: "weather-icons/50d@2x.png"},
+                      "Sand": {label: "Piaszczyście", icon: "weather-icons/50d@2x.png"},
+                      "Ash": {label: "Popieliście", icon: "weather-icons/50d@2x.png"},
+                      "Squall": {label: "Szkwał", icon: "weather-icons/50d@2x.png"},
+                      "Tornado": {label: "Tornado", icon: "weather-icons/50d@2x.png"},
+                      "Clouds": {label: "Pochmurno", icon: "weather-icons/09d@2x.png"},
+                    }
+                    var responseBody = JSON.stringify(res.responseText);
+                    var firstWeather = responseBody.weather[0];
+                    var currentWeatherInfo = firstWeather ? weatherInfo[firstWeather.main] : undefined
+                    currentTemperature = responseBody.main.temp - 273;
+                    currentDescription = currentWeatherInfo ? currentWeatherInfo.label : responseBody.weather.main
+                    currentIcon = currentWeatherInfo ? currentWeatherInfo.icon : ""
+                }
+            );
+        }
+    }
 
     Rectangle {
         id: weatherInner
@@ -62,33 +114,10 @@ Rectangle {
                     id: weatherContent
 
                     WeatherOption {
-                        temperature: "25°C"
+                        icon: currentIcon
+                        temperature: currentTemperature + "°C"
                         time: "Teraz"
-                        label: "Pochmurno"
-                    }
-
-                    WeatherOption {
-                        temperature: "25°C"
-                        time: "12:00"
-                        label: "Deszczowo"
-                    }
-
-                    WeatherOption {
-                        temperature: "22°C"
-                        time: "13:00"
-                        label: "Słonecznie"
-                    }
-
-                    WeatherOption {
-                        temperature: "21°C"
-                        time: "14:00"
-                        label: "Mgliście"
-                    }
-
-                    WeatherOption {
-                        temperature: "18°C"
-                        time: "15:00"
-                        label: "Burzliwie"
+                        label: currentDescription
                     }
                 }
 
